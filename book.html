@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message By Ubaikab</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; /* Increased width */
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; /* Slightly increased font size */
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("./4s.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); /* Dark red text color for cover page */
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); /* Dark red heading color */
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); /* Dark red text color for paragraphs */
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); /* Dark red text color for front and back pages */
+}
+
+.book {
+  width: 40cqmin; /* Slightly increased width */
+}
+
+.page {
+  font-size: 2cqmin; /* Slightly increased font size */
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            2025.<br />Ubaikab Special Edition
+          </p>
+        </div>
+        <div class="back">
+          <h2>The First Day ❤️✨</h2>
+
+       <p>Hi bail You know jab mene tumhe first baar dekha tha na jab hi i was like hayye mashaallah. Mene pata hai soch liya tha ye jo bhi hai kyuke naam toh pata nhi tha lekin apni feelings zarur batauga and bus aapse baat karne hai mujhe pura ek saal lag gyaa kyuke kabhi ase himmat hi nhi aa payi ke kabhi aapse kuch kahu. Abhi bhi mujhe yaadh hai aapko first baar marines leke jana, and aapko bus dekhte baithna pata nhi lekin yes woh mujhe accha lagta tha and mujhe woh bhi yaadh hai jab hum return aare the tab aapne kaha tha ke i'll marry someone konkani and jab toh i was like bhai dil hi tut gaya kyuke jab mene aapko meri feelings confess nhi ki thi lekin mujhe ye pata tha that inshaallah i'll say it to you someday 💖</p>
+        </div>
+      </div>
+      <!--2nd page-->
+      <div class="page">
+        <div class="front">
+          <h2>Chothi Chothi Khushiyaan ❤️✨</h2>
+          <p>Aapko pata honga ke aapse baat karne ke liye mene bhot logo se help liya bus iss hope mei ke bus aapse baat hi hojae lekin fir don't know how bus ek page ki photo se aapse baat hona likha tha and i was like abh mujhe kese bhi isbaar toh aapko bolna hi padega nhi toh fir kabhi nhi bol pauga 💖 And then kese na kese jab mene aapse baat kiya, mujhe toh pata tha ke what i want to say lekin fir bhi ek darr tha that how you'll react and kabhi aapne mana kardiya toh lekin fir bhi i was agar abh nhi toh kabhi nhi and fir jab mene confess kiya toh aapke jawab se toh mei ekdum sadme mei lekin aapne fir bhi mere se baat kiye toh i was like koshish toh karte rahunga kya pata aap maan jao 
+           💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./1s.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--3rd page-->
+      <div class="page">
+        <div class="front">
+          <h2>Magical moments for Me ✨💖</h2>
+          <p>Jab aapne mere se firse baat kiye mere itna sab bolneke baadh bhi toh mei toh full khush tha that aapne mujhe maaf toh kiya lekin fir bhi ek ase woh toh that abh i will try and mei try karta rahunga jab tk i can and if mei try karra hu toh mene aapko bhi batana sahi samjha that mei toh try karta rahunga, patna nhi patna aap per hai, pls patjana 💕 And ig ye mera best decision tha and mei isper kabhi regret bhi nhi karunga, lekin yaar bhot sataye aap kitna bhav khaye jawab nhi dete the full ekdum itrana lekin mene toh decide kara tha that mei toh piche nhi hatunga and ye sab karna rang laya kyuke on 14 october 1.5 mahina aapko satane ke baadh you kissed me and woh toh mere liye like sab kuch tha mei toh ekdum full aasmano pe ✨💖
+          </p>
+        </div>
+        <div class="back">
+          <h2>Motivational days for Aaps 💫✨</h2>
+          <p>Lekin aap toh aap ho crazy ho ekdum college ke holidays kaha start hue aap toh ekdum motivation leliye ke mujhse baat hi nhi karna and aapne toh ekdum paraya kardiya lekin ik ke meri bhi galti ke mei bhi samne se msg kar sakta tha uske liye i am sorry but aapne toh yaar 50 dino ki motivation leliye the itna zyada toh yaar aap padhai ko bhi seriously nhi lete lekin aapki yahi harkatein to cute hai 💖✨ And jab college shuru hua and hum mile aapka itna sakta motivation tutne 1 din bhi nhi laga matlab aapko bhi ye motivation nhi lena lekin fir harkatein karenga kon bus yaar itna hi kahunga abhse pls asa kuch nhi karna pls mumma kyuke aapse thode time baat nhi hoti toh mei full ekdum depressed hojata toh pls aage se no motivations okay 🌟
+          </p>
+        </div>
+      </div>
+      <!--4th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The First Birthday Message🤞💖</h2>
+          <p>Happy birthday bail ❤ 
+            I just wanna thank you ke aap mere sath ho orr mei uss din ke liye bhi bhot thankful hu jab we have talked for the first time uske baadh hamari itni acchi friendship hue ha ik mujhe pyaar hogaya lekin fir bhi aap mere sath rahe mera dhyan diya mujhe samjha asehe jab bhi you'll feel low orr lage kisi se share karna toh I'll be there hamesha you can count on me 
+            Firse happy birthday meri jaan 🩷 enjoy karo apni life jaise ho wese hi raho kyuke cute lagte ho 💕
+          </p>
+        </div>
+        <div class="back">
+          <img src="./2s.jpg" alt="Img 1" />
+        </div>
+      </div>
+      <!--5th page-->
+      <div class="page">
+        <div class="front">
+          <h1>A Little Sorry From Me 💫💖</h1>
+          <p>Apko ye sorry isiliye kyuke yaar bhot pareshaan karta hu mei aapko harr choti choti baaton pe aapko satata hu lekin yaar ye sab bus isiliye karta hu kyuke in sab se aap mere se zyada baat karte ho lekin ik ye sab karna bhi galat hai kyuke aapko baar baar asa satana is not good so bus isiliye extreme sorry mumma i'll try ke mei aage se ye sab na karu 💕 Orr ek orr main cheez ke liye bhi sorry kyuke bh is pagal insaan ko aapko hi sambhalna hai toh uske liye be prepaired and don't worry itna bhi zyda nhi satauga lekin kuch bhi dhyan toh aapko rakhna padega ✨
+          </p>
+        </div>
+        <div class="back">
+          <h1>Something I Want to Share 💖✨</h1>
+          <p> You know aapke sath class mei sath mei baithna, woh asa chupke chupke hath pakadna, orr woh aapko blush karwana ye sab cheeze orr ye sab harkatein bhot acchi lagti hai amd i guess aapko bhi acchi lagti hongi just bus yahi sab hum aage bhi karte rahe orr aapke sath lab mei alag se baithna ye bhi i love bhot 💕 Matlab mei toh aaya tha college padhne lekin ye jo pichla ek saal guzra hai woh mere liye best tha kyuke aapke sath tha orr hamari woh lambi lambi walks itne dhup mei bhi woh bhi ek cheez thi jo mei crave karta hu woh aapka mujhe raasto pe sabodana khilana ye sab mei bhot crave karra hu yaar firse karna hai ✨
+          </p>
+        </div>
+      </div>
+      <!--6th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Beauty of Your Subtleness ✨💖</h2>
+          <p>Dekho subtleness ka matlab mere hisab se toh clam or shant rehta hai, orr aap to mashaallah se bhot zada inko follow karte ho kyuke aap toh subtle simmo ho orr aapko bhi pata hai kitna lekin you know what aap jese hai wese hi bhot pyaare ho 💖✨ aur aapka mujhe jo khebda khena kebabu khena woh toh mujhe bhot pasand hai, wese aapko pata hai koi mujhe asa sab bolta tha phele toh mei bhot chidhta tha lekin abhi aap jabse bolne lage tabse accha lagne laga hai so jab bhi aapka mann kare toh bola karo okay and ha main subtleness ke sath hamesha tharak lana zaruri nhi hai lekin aap na laya karo aaper suit karta okay 💕✨
+          </p>
+        </div>
+        <div class="back">
+          <h2>Your Fashion Sense Aaye Haye ✨💖</h2>
+          <p>Mei aapke fashion or kapde ke baare bolne kese hi bhul sakta hu, dekho aapka jo og kapde pant or shirt use aapka sqaf woh toh mashaallah lagta tha lekin jab se aapne bhurkha phenna start kiya hai hayee aap bhot zada cute lagne lage ho uske sath jo aapke woh cutie crocs hai woh toh orr zada aapko cute banadete hai aapko ek chota sa suggestion hai bus aap in outfit mei mashaallah lagte ho lekin meri alsi jaan kabhi thoda apna kimti waqt nikal kar apne bhurkhe ko dho bhi liya karo bichara pata nhi kitne dino se bina dhoi padha hai baaki aapki dressing sense toh mere se bhot acchi hai toh orr koi suggestion nhi hai jaan 💕✨
+          </p>
+        </div>
+      </div>
+      <!--7th page-->
+      <div class="page">
+        <div class="front">
+          <h2>The Future I Want with You🌹❤</h2>
+          <p>Jaan you know mei bus yahi nhi chahta hu ke hum sirf college mei hi sath rahe mei bus ye chahta hu hum aage jo bhi kare matlab if hume aage job bhi karna pade tab bhi hum sath ho orr bus ye apka sath mujhe apni zindagi bhar chahiye, pata hai bhot kuch socha hai aapke sath pura world ghumna hai aapke sath aapka ka hath thame apne jitne bhi dreams hai sab aapko sath rakhke pura karna orr apke bhi dreams pura karne mei apke sath rehna hai, orr ha future wedding ka plan sab aapko karna hai ok jesa bhi hai jaha bhi hai sab aapki zimmedari kyuke aapki khushi mei mei khush hu toh uske liye jaldi se shaadi karo mumma 💕
+          </p>
+        </div>
+        <div class="back">
+          <h2>A Promise I Need From You ❤️✨</h2>
+          <p>Toh jaan aapse ek promise okay i know mujhe nhi karna chahiye lekin bus for our are future i just want to say bus mere sath apne saare sapne dekhlo orr inshaallah hum use milke pure karenge or ha aapki woh minimum 2 bacche wali baat ko mei humesha ignore karunga toh uske liye abhi se extremely sorry orr ha i'll try inshaallah to give you allah happiness you need and make your dreams come true i know that mei bhot saari baatein repeat kardiya hu uske liye i am sorry and ha ek sawal uska answer tumhe dena hai toh pls dedena so from my extreme depth of heart Will you Marry Me And be my life partner ? 💖💕 </p>
+        </div>
+      </div>
+
+      <div class="page">
+        <div class="front">
+          <img src="./3s.jpg" alt="Img 1" />
+        </div>
+        <div class="back cover">
+          <h3>I Love you Bail</h3>
+          <p>
+            Yours: Ubaikab Shaikh<br /><a
+              href=""
+              target="_blank"
+              rel="nofollow"></a>
+
+            <br />
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+<div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); // Set current page
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+ 
+  </body>
+</html>
+
